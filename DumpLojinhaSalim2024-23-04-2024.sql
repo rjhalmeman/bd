@@ -1,3 +1,6 @@
+DROP SCHEMA  IF EXISTS `lojinha_do_salim_2024`;
+
+
 CREATE DATABASE  IF NOT EXISTS `lojinha_do_salim_2024` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `lojinha_do_salim_2024`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
