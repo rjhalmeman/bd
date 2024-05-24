@@ -1,4 +1,6 @@
--- MySQL dump 10.13  Distrib 8.0.37, for Linux (x86_64)
+CREATE DATABASE  IF NOT EXISTS `granja` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `granja`;
+-- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
 -- Host: localhost    Database: granja
 -- ------------------------------------------------------
@@ -7,7 +9,7 @@
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8mb4 */;
+/*!50503 SET NAMES utf8 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -30,6 +32,16 @@ CREATE TABLE `Cor` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `Cor`
+--
+
+LOCK TABLES `Cor` WRITE;
+/*!40000 ALTER TABLE `Cor` DISABLE KEYS */;
+INSERT INTO `Cor` VALUES ('1','Branco'),('2','Amarelo'),('3','Azul');
+/*!40000 ALTER TABLE `Cor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Producao`
 --
 
@@ -45,6 +57,16 @@ CREATE TABLE `Producao` (
   CONSTRAINT `producao_produto_FK` FOREIGN KEY (`idProduto`) REFERENCES `Produto` (`idProduto`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Producao`
+--
+
+LOCK TABLES `Producao` WRITE;
+/*!40000 ALTER TABLE `Producao` DISABLE KEYS */;
+INSERT INTO `Producao` VALUES ('2024-05-24',1,250,0.47),('2024-05-24',2,120,0.4),('2024-03-30',1,150,0.42),('2024-04-15',1,240,0.42),('2024-04-20',2,120,0.41);
+/*!40000 ALTER TABLE `Producao` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Produto`
@@ -68,6 +90,16 @@ CREATE TABLE `Produto` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `Produto`
+--
+
+LOCK TABLES `Produto` WRITE;
+/*!40000 ALTER TABLE `Produto` DISABLE KEYS */;
+INSERT INTO `Produto` VALUES (1,'Ovo Extra Grande',120,'UN','1'),(2,'Ovo Grande',72,'UN','1'),(3,'Ovo Médio',12,'un','1'),(4,'Ovo pequeno',36,'UN','1'),(5,'Ovo de codorna',10,'dz','3');
+/*!40000 ALTER TABLE `Produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Tipo`
 --
 
@@ -83,6 +115,16 @@ CREATE TABLE `Tipo` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Dumping data for table `Tipo`
+--
+
+LOCK TABLES `Tipo` WRITE;
+/*!40000 ALTER TABLE `Tipo` DISABLE KEYS */;
+INSERT INTO `Tipo` VALUES ('1','Extra',60);
+/*!40000 ALTER TABLE `Tipo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `UnidadeDeMedida`
 --
 
@@ -95,6 +137,16 @@ CREATE TABLE `UnidadeDeMedida` (
   PRIMARY KEY (`siglaUM`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `UnidadeDeMedida`
+--
+
+LOCK TABLES `UnidadeDeMedida` WRITE;
+/*!40000 ALTER TABLE `UnidadeDeMedida` DISABLE KEYS */;
+INSERT INTO `UnidadeDeMedida` VALUES ('BN','Bandeja'),('DZ','Dúzia'),('KG','Quilograma'),('UN','Unidade');
+/*!40000 ALTER TABLE `UnidadeDeMedida` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Temporary view structure for view `bQuantosOvosPorData`
@@ -125,10 +177,6 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `quantidade`,
  1 AS `precoNoDia`*/;
 SET character_set_client = @saved_cs_client;
-
---
--- Dumping routines for database 'granja'
---
 
 --
 -- Final view structure for view `bQuantosOvosPorData`
@@ -175,4 +223,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-05-24 14:25:07
+-- Dump completed on 2024-05-24 14:35:26
