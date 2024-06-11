@@ -18,6 +18,30 @@ USE `granja`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `CategoriaInsumo`
+--
+
+DROP TABLE IF EXISTS `CategoriaInsumo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `CategoriaInsumo` (
+  `idCategoria` int NOT NULL,
+  `nomeCategoria` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`idCategoria`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `CategoriaInsumo`
+--
+
+LOCK TABLES `CategoriaInsumo` WRITE;
+/*!40000 ALTER TABLE `CategoriaInsumo` DISABLE KEYS */;
+INSERT INTO `CategoriaInsumo` VALUES (1,'Fixo'),(2,'Eventual');
+/*!40000 ALTER TABLE `CategoriaInsumo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Cor`
 --
 
@@ -42,6 +66,34 @@ INSERT INTO `Cor` VALUES ('1','Branco'),('2','Amarelo'),('3','Azul');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Despesa`
+--
+
+DROP TABLE IF EXISTS `Despesa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Despesa` (
+  `dataDespesa` date NOT NULL,
+  `idInsumo` int NOT NULL,
+  `quantidade` int DEFAULT NULL,
+  `valor` double DEFAULT NULL,
+  PRIMARY KEY (`dataDespesa`,`idInsumo`),
+  KEY `Despesa_Insumo_FK` (`idInsumo`),
+  CONSTRAINT `Despesa_Insumo_FK` FOREIGN KEY (`idInsumo`) REFERENCES `Insumo` (`idInsumo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Despesa`
+--
+
+LOCK TABLES `Despesa` WRITE;
+/*!40000 ALTER TABLE `Despesa` DISABLE KEYS */;
+INSERT INTO `Despesa` VALUES ('2024-05-10',3,1,35),('2024-05-15',1,500,1500),('2024-06-15',1,550,1650);
+/*!40000 ALTER TABLE `Despesa` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Temporary view structure for view `ExemploDeViewEx01`
 --
 
@@ -52,6 +104,64 @@ SET @saved_cs_client     = @@character_set_client;
 /*!50001 CREATE VIEW `ExemploDeViewEx01` AS SELECT 
  1 AS `TotalDeOvosProduzidos`*/;
 SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `Insumo`
+--
+
+DROP TABLE IF EXISTS `Insumo`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `Insumo` (
+  `idInsumo` int NOT NULL,
+  `nomeInsumo` varchar(50) DEFAULT NULL,
+  `quantidadeInsumo` varchar(100) DEFAULT NULL,
+  `idCategoria` int DEFAULT NULL,
+  `siglaUM` varchar(2) DEFAULT NULL,
+  PRIMARY KEY (`idInsumo`),
+  KEY `Insumo_CategoriaInsumo_FK` (`idCategoria`),
+  KEY `Insumo_UnidadeDeMedida_FK` (`siglaUM`),
+  CONSTRAINT `Insumo_CategoriaInsumo_FK` FOREIGN KEY (`idCategoria`) REFERENCES `CategoriaInsumo` (`idCategoria`),
+  CONSTRAINT `Insumo_UnidadeDeMedida_FK` FOREIGN KEY (`siglaUM`) REFERENCES `UnidadeDeMedida` (`siglaUM`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Insumo`
+--
+
+LOCK TABLES `Insumo` WRITE;
+/*!40000 ALTER TABLE `Insumo` DISABLE KEYS */;
+INSERT INTO `Insumo` VALUES (1,'Ração','500',1,'kg'),(2,'Energia elétrica','3050',1,'kw'),(3,'Cimento','3',2,'sc');
+/*!40000 ALTER TABLE `Insumo` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `ObservacaoDespesa`
+--
+
+DROP TABLE IF EXISTS `ObservacaoDespesa`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `ObservacaoDespesa` (
+  `dataDespesa` date NOT NULL,
+  `idInsumo` int NOT NULL,
+  `observacaoDespesa` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`idInsumo`,`dataDespesa`),
+  KEY `ObservacaoDespesa_Despesa_FK` (`dataDespesa`,`idInsumo`),
+  CONSTRAINT `ObservacaoDespesa_Despesa_FK` FOREIGN KEY (`dataDespesa`, `idInsumo`) REFERENCES `Despesa` (`dataDespesa`, `idInsumo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `ObservacaoDespesa`
+--
+
+LOCK TABLES `ObservacaoDespesa` WRITE;
+/*!40000 ALTER TABLE `ObservacaoDespesa` DISABLE KEYS */;
+INSERT INTO `ObservacaoDespesa` VALUES ('2024-05-10',3,'Para consertar piso de entrada');
+/*!40000 ALTER TABLE `ObservacaoDespesa` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `Producao`
@@ -109,7 +219,7 @@ CREATE TABLE `Produto` (
 
 LOCK TABLES `Produto` WRITE;
 /*!40000 ALTER TABLE `Produto` DISABLE KEYS */;
-INSERT INTO `Produto` VALUES (1,'Ovo Extra Grande',120,'UN','1',60),(2,'Ovo Grande',72,'UN','1',55),(3,'Ovo Médio',12,'un','1',50),(4,'Ovo pequeno',36,'UN','1',45),(5,'Ovo de codorna',10,'dz','3',25),(6,'Ovo Extra Grande',500,'Un','2',60),(7,'Ovo Grande',1000,'un','2',55);
+INSERT INTO `Produto` VALUES (1,'Ovo Extra Grande',120,'UN','1',60),(2,'Ovo Grande',72,'UN','1',55),(3,'Ovo Médio',12,'un','1',50),(4,'Ovo pequeno',36,'UN','1',45),(5,'Ovo de codorna',10,'dz','3',300),(6,'Ovo Extra Grande',500,'Un','2',60),(7,'Ovo Grande',1000,'un','2',55);
 /*!40000 ALTER TABLE `Produto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,31 +235,6 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `idProduto`,
  1 AS `quantidade`*/;
 SET character_set_client = @saved_cs_client;
-
---
--- Table structure for table `Tipo`
---
-
-DROP TABLE IF EXISTS `Tipo`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `Tipo` (
-  `idTipo` varchar(5) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `nomeTipo` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `pesoMin` int DEFAULT NULL COMMENT 'peso mínimo para ser Extra',
-  PRIMARY KEY (`idTipo`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Tipo`
---
-
-LOCK TABLES `Tipo` WRITE;
-/*!40000 ALTER TABLE `Tipo` DISABLE KEYS */;
-INSERT INTO `Tipo` VALUES ('1','Extra',60);
-/*!40000 ALTER TABLE `Tipo` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `UnidadeDeMedida`
@@ -171,7 +256,7 @@ CREATE TABLE `UnidadeDeMedida` (
 
 LOCK TABLES `UnidadeDeMedida` WRITE;
 /*!40000 ALTER TABLE `UnidadeDeMedida` DISABLE KEYS */;
-INSERT INTO `UnidadeDeMedida` VALUES ('BN','Bandeja'),('DZ','Dúzia'),('KG','Quilograma'),('UN','Unidade');
+INSERT INTO `UnidadeDeMedida` VALUES ('BN','Bandeja'),('DZ','Dúzia'),('KG','Quilograma'),('kw','Kilowatt/Hora'),('sc','Saco com 60 kg'),('UN','Unidade');
 /*!40000 ALTER TABLE `UnidadeDeMedida` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -414,4 +499,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-04  6:04:02
+-- Dump completed on 2024-06-11  6:21:00
