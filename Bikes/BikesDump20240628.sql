@@ -37,7 +37,7 @@ CREATE TABLE `Cargo` (
 
 LOCK TABLES `Cargo` WRITE;
 /*!40000 ALTER TABLE `Cargo` DISABLE KEYS */;
-INSERT INTO `Cargo` VALUES (1,'Gerente'),(2,'Vendedor');
+INSERT INTO `Cargo` VALUES (1,'Gerente'),(2,'Vendedor'),(3,'Faxineiro');
 /*!40000 ALTER TABLE `Cargo` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -220,6 +220,7 @@ CREATE TABLE `Funcionario` (
 
 LOCK TABLES `Funcionario` WRITE;
 /*!40000 ALTER TABLE `Funcionario` DISABLE KEYS */;
+INSERT INTO `Funcionario` VALUES (5000,1,'111'),(1200,3,'444'),(2000,2,'555');
 /*!40000 ALTER TABLE `Funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -577,4 +578,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-06-28 14:50:13
+-- Dump completed on 2024-06-28 15:06:10
