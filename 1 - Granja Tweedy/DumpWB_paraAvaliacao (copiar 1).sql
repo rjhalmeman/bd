@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `granjaAval` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `granjaAval`;
+CREATE DATABASE  IF NOT EXISTS `granja` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `granja`;
 -- MySQL dump 10.13  Distrib 8.0.36, for Linux (x86_64)
 --
--- Host: localhost    Database: granjaAval
+-- Host: localhost    Database: granja
 -- ------------------------------------------------------
 -- Server version	8.0.38
 
@@ -179,7 +179,7 @@ CREATE TABLE `ObservacaoDespesa` (
 
 LOCK TABLES `ObservacaoDespesa` WRITE;
 /*!40000 ALTER TABLE `ObservacaoDespesa` DISABLE KEYS */;
-INSERT INTO `ObservacaoDespesa` VALUES ('2024-05-10',3,'Para consertar piso de entrada'),('2024-06-07',14,'para combater surto de virose'),('2024-06-13',26,'para diminuir o mato próximo da granjaAval'),('2024-06-20',40,'Pintura das cercas externas');
+INSERT INTO `ObservacaoDespesa` VALUES ('2024-05-10',3,'Para consertar piso de entrada'),('2024-06-07',14,'para combater surto de virose'),('2024-06-13',26,'para diminuir o mato próximo da granja'),('2024-06-20',40,'Pintura das cercas externas');
 /*!40000 ALTER TABLE `ObservacaoDespesa` ENABLE KEYS */;
 UNLOCK TABLES;
 
