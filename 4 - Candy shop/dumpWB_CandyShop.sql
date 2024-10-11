@@ -170,7 +170,7 @@ CREATE TABLE `Pagamento` (
 
 LOCK TABLES `Pagamento` WRITE;
 /*!40000 ALTER TABLE `Pagamento` DISABLE KEYS */;
-INSERT INTO `Pagamento` VALUES (2,'2024-10-01 03:00:00',22);
+INSERT INTO `Pagamento` VALUES (2,'2024-10-01 03:00:00',22),(5,'2024-10-10 03:00:00',47);
 /*!40000 ALTER TABLE `Pagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -198,7 +198,7 @@ CREATE TABLE `PagamentoHasFormaPagamento` (
 
 LOCK TABLES `PagamentoHasFormaPagamento` WRITE;
 /*!40000 ALTER TABLE `PagamentoHasFormaPagamento` DISABLE KEYS */;
-INSERT INTO `PagamentoHasFormaPagamento` VALUES (2,2,22);
+INSERT INTO `PagamentoHasFormaPagamento` VALUES (2,2,22),(5,3,30),(5,2,17);
 /*!40000 ALTER TABLE `PagamentoHasFormaPagamento` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,4 +322,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-10  6:57:05
+-- Dump completed on 2024-10-11  4:56:43
