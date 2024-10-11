@@ -213,9 +213,12 @@ CREATE TABLE `Pedido` (
   `idPedido` int NOT NULL,
   `dataDoPedido` date NOT NULL,
   `ClientePessoaCpfPessoa` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci NOT NULL,
+  `FuncionarioPessoaCpfPessoa` varchar(20) CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci DEFAULT NULL,
   PRIMARY KEY (`idPedido`),
   KEY `fk_Pedido_Cliente1_idx` (`ClientePessoaCpfPessoa`),
-  CONSTRAINT `fk_Pedido_Cliente1` FOREIGN KEY (`ClientePessoaCpfPessoa`) REFERENCES `Cliente` (`PessoaCpfPessoa`)
+  KEY `Pedido_Funcionario_FK` (`FuncionarioPessoaCpfPessoa`),
+  CONSTRAINT `fk_Pedido_Cliente1` FOREIGN KEY (`ClientePessoaCpfPessoa`) REFERENCES `Cliente` (`PessoaCpfPessoa`),
+  CONSTRAINT `Pedido_Funcionario_FK` FOREIGN KEY (`FuncionarioPessoaCpfPessoa`) REFERENCES `Funcionario` (`PessoaCpfPessoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -225,7 +228,7 @@ CREATE TABLE `Pedido` (
 
 LOCK TABLES `Pedido` WRITE;
 /*!40000 ALTER TABLE `Pedido` DISABLE KEYS */;
-INSERT INTO `Pedido` VALUES (1,'2024-09-05','333'),(2,'2024-04-20','222'),(5,'2024-05-20','222');
+INSERT INTO `Pedido` VALUES (1,'2024-09-05','333',NULL),(2,'2024-04-20','222',NULL),(5,'2024-05-20','222',NULL);
 /*!40000 ALTER TABLE `Pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -322,4 +325,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-11  4:56:43
+-- Dump completed on 2024-10-11  5:05:39
