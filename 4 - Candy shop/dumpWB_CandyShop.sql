@@ -145,6 +145,7 @@ CREATE TABLE `Funcionario` (
 
 LOCK TABLES `Funcionario` WRITE;
 /*!40000 ALTER TABLE `Funcionario` DISABLE KEYS */;
+INSERT INTO `Funcionario` VALUES ('222',2500,2,0.03),('333',2700,2,0.04);
 /*!40000 ALTER TABLE `Funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +229,7 @@ CREATE TABLE `Pedido` (
 
 LOCK TABLES `Pedido` WRITE;
 /*!40000 ALTER TABLE `Pedido` DISABLE KEYS */;
-INSERT INTO `Pedido` VALUES (1,'2024-09-05','333',NULL),(2,'2024-04-20','222',NULL),(5,'2024-05-20','222',NULL);
+INSERT INTO `Pedido` VALUES (1,'2024-09-05','333','222'),(2,'2024-04-20','222','333'),(5,'2024-05-20','222','333');
 /*!40000 ALTER TABLE `Pedido` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -312,7 +313,7 @@ CREATE TABLE `Produto` (
 
 LOCK TABLES `Produto` WRITE;
 /*!40000 ALTER TABLE `Produto` DISABLE KEYS */;
-INSERT INTO `Produto` VALUES (1,'Arroz Especial',100,NULL),(2,'Feijão',50,NULL),(22,'vinte e dois',100,NULL),(33,'trinta e tres',33,NULL),(444,'4444',444,NULL);
+INSERT INTO `Produto` VALUES (1,'Arroz Especial',100,7),(2,'Feijão',50,9),(22,'Farinha de mandioca',100,5),(33,'Fubá',33,3),(444,'Azeite de oliva',444,44);
 /*!40000 ALTER TABLE `Produto` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -325,4 +326,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-10-11  5:05:39
+-- Dump completed on 2024-10-11 13:11:28
